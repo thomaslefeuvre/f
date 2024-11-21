@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ ! -x "$(which fzf 2>/dev/null)" ]; then
+  echo "please install: fzf (https://github.com/junegunn/fzf)" >&2
+  exit 1
+fi
+
+CONFIG_FILE="${HOME}/.fconfig"
+
+cmd=$(history 1 | sed 's/^[ ]*[0-9]\+[ ]*//')
+
+echo "Adding command ${cmd} to favourites."
+
+echo "$cmd" >> "$CONFIG_FILE"
